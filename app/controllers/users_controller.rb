@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       #handle save
     else
-      render new
+      render 'new'
     end
   end
 
