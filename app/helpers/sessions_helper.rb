@@ -8,7 +8,7 @@ module SessionsHelper
     user.remember
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
-  end 
+  end
 
   # Returns the user corresponding to the remember token cookie.
   def current_user
@@ -22,6 +22,7 @@ module SessionsHelper
       end
     end
   end
+
 
   # Return true if user id found with session id
   def logged_in?
