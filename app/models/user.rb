@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  has_many :rooms, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email
@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end
-
 
   # Returns a random token.
   def User.new_token

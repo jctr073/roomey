@@ -1,0 +1,13 @@
+<% provide(:title, 'All Rooms') %>
+<h1>All Rooms</h1>
+
+<ul>
+	<% @rooms.each() do |rm| %>
+	 <li>
+		<%= link_to rm.neighborhood + ' (' + rm.price.to_s + ')', rm %>
+		<br>
+		<%= rm.description %>
+	 </li>
+	<% end %>
+</ul>
+
