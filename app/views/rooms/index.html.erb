@@ -1,16 +1,18 @@
 <% provide(:title, 'All Rooms') %>
 <h1>All Rooms</h1>
+<%=	will_paginate %>
 
 <% @rooms.each() do |rm| %>
-	<div class="media">
-	  <div class="media-left">
-	    <a href="#">
-	    	<%= image_tag("temp.svg", alt: "Temp Img", class: "media-object" ) %>
-	    </a>
-	  </div>
-	  <div class="media-body">
-	    <h4 class="media-heading"><%= link_to rm.short_desc + ' (' + rm.price.to_s + ')', rm %></h4>
-	    <%= rm.description %>
-	  </div>
-	</div>
-<% end %>
+		<div class="media">
+		  <div class="media-left">
+		    <a href="#">
+		    	<%= image_tag("temp.svg", alt: "Temp Img", class: "media-object" ) %>
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading"><%= link_to rm.short_desc + ' (' + rm.price.to_s + ')', rm %></h4>
+		    <%= rm.description %>
+		  </div>
+		</div>
+	<% end %>
+<%=	will_paginate %>

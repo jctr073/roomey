@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(name:  "Example User",
+             age: rand(18..50),
+             gender: "Male",
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
@@ -19,6 +21,8 @@ User.create!(name:  "Example User",
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
   User.create!(name:  name,
+               age: rand(18..50),
+               gender: "Female",
                email: email,
                password:              password,
                password_confirmation: password,
@@ -26,7 +30,7 @@ User.create!(name:  "Example User",
                activated_at: Time.zone.now)
 end
 
-30.times do |n|
+66.times do |n|
   areas = %w{Height Downtown Mission Sunset Richmond Marina}
   words = %w{Spacious Luxury Renovated Bright Large}
   desc = Faker::Lorem.paragraph(rand(2..7))
