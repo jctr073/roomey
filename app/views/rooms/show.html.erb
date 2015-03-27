@@ -1,2 +1,3 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h1><%= @room.short_desc %> <small><%= number_to_currency(@room.price) %> </small></h1>
+<h4>Description</h4>
+<p><%= @room.description %></p>

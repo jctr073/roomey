@@ -28,8 +28,10 @@ end
 
 30.times do |n|
   areas = %w{Height Downtown Mission Sunset Richmond Marina}
+  words = %w{Spacious Luxury Renovated Bright Large}
   desc = Faker::Lorem.paragraph(rand(2..7))
   Room.create(neighborhood: areas[rand(0..5)],
+              short_desc: "#{words[rand(0..4)]} room for rent.",
               price: rand(800..2750), 
               description: desc,
               user_id: rand(1..10))

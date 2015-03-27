@@ -1,13 +1,16 @@
 <% provide(:title, 'All Rooms') %>
 <h1>All Rooms</h1>
 
-<ul>
-	<% @rooms.each() do |rm| %>
-	 <li>
-		<%= link_to rm.neighborhood + ' (' + rm.price.to_s + ')', rm %>
-		<br>
-		<%= rm.description %>
-	 </li>
-	<% end %>
-</ul>
-
+<% @rooms.each() do |rm| %>
+	<div class="media">
+	  <div class="media-left">
+	    <a href="#">
+	    	<%= image_tag("temp.svg", alt: "Temp Img", class: "media-object" ) %>
+	    </a>
+	  </div>
+	  <div class="media-body">
+	    <h4 class="media-heading"><%= link_to rm.short_desc + ' (' + rm.price.to_s + ')', rm %></h4>
+	    <%= rm.description %>
+	  </div>
+	</div>
+<% end %>

@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20150326021757) do
 
   create_table "rooms", force: :cascade do |t|
+    t.string   "short_desc"
     t.string   "neighborhood"
     t.decimal  "price",        precision: 10, scale: 2
     t.text     "description"
