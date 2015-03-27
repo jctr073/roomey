@@ -27,7 +27,7 @@ User.create!(name:  "Example User",
 end
 
 30.times do |n|
-  areas = %w{Height Downtown Mission Sunset Richmon Marina}
+  areas = %w{Height Downtown Mission Sunset Richmond Marina}
   desc = Faker::Lorem.paragraph(rand(2..7))
   Room.create(neighborhood: areas[rand(0..5)],
               price: rand(800..2750), 
