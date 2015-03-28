@@ -1,3 +1,3 @@
 # Roomey
 
-This roomate matching site.
+This is a roomate matching site.
