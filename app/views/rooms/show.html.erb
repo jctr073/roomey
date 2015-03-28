@@ -1,16 +1,32 @@
 <h1><%= @room.short_desc %><br>
 <small><%= time_ago_in_words(@room.created_at) %></small>
 </h1>
+<div class="row">
+  <div class="col-md-8">
+    <dl class="dl-horizontal">
+    	<dt>Price</dt>
+    	<dd><%= number_to_currency(@room.price)%></dd>
+    	<dt>Neighborhood</dt>
+    	<dd><%= @room.neighborhood.name %></dd>
+      <dt>Floor Space</dt>
+      <dd><%= "#{@room.size} sq ft" %></dd>
+      <dt>Description</dt>
+      <dd><%= @room.description %></dd>
+      <dt>Contact</dt>
+      <dd><%= mail_to(@room.user.email, @room.user.name) %></dd>
+    </dl>
+  </div>
 
-<dl class="dl-horizontal">
-	<dt>Price</dt>
-	<dd><%= number_to_currency(@room.price)%></dd>
-	<dt>Neighborhood</dt>
-	<dd><%= @room.neighborhood.name %></dd>
-  <dt>Floor Space</dt>
-  <dd><%= "#{@room.size} sq ft" %></dd>
-  <dt>Description</dt>
-  <dd><%= @room.description %></dd>
-  <dt>Contact</dt>
-  <dd><%= mail_to(@room.user.email, @room.user.name) %></dd>
-</dl>
+  <div class="col-md-4">
+    <table class="table table-bordered table-striped">
+      <tr><th>Amenities</th></tr>
+        <tbody>
+          <% @room.amenities.each do |a| %>
+            <tr>
+              <td><%= a.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>
