@@ -30,13 +30,28 @@ User.create!(name:  "Example User",
                activated_at: Time.zone.now)
 end
 
+areas = %w{Height Downtown Mission Sunset Richmond Marina}
+areas.each do |a|
+  Neighborhood.create(city_id: "SFO",
+                      name: a)
+end
+
+amtys = ['Close to muni', 'Private entrance', 'Wash/dryer in unit', 'Wash/dryer in building']
+amtys.each do |a|
+  Amenity.create(name: a)
+end
+
 66.times do |n|
-  areas = %w{Height Downtown Mission Sunset Richmond Marina}
   words = %w{Spacious Luxury Renovated Bright Large}
-  desc = Faker::Lorem.paragraph(rand(2..7))
-  Room.create(neighborhood: areas[rand(0..5)],
+  desc = Faker::Lorem.paragraph(rand(5..9))
+  rm = Room.create(neighborhood_id: rand(1..6),
               short_desc: "#{words[rand(0..4)]} room for rent.",
               price: rand(800..2750), 
               description: desc,
+              size: rand(100..2000),
               user_id: rand(1..10))
+  Amenity.all.each do |am|
+    RoomAmenity.create(room_id: rm.id, amenity_id: am.id)
+  end
 end 
+

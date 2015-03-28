@@ -10,7 +10,7 @@
 		    </a>
 		  </div>
 		  <div class="media-body">
-		    <h4 class="media-heading"><%= link_to rm.short_desc + ' (' + rm.price.to_s + ')', rm %></h4>
+		    <h4 class="media-heading"><%= link_to rm.short_desc + ' (' + number_to_currency(rm.price).to_s + ')', rm %></h4>
 		    <%= rm.description %>
 		  </div>
 		</div>

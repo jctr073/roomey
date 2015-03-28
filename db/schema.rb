@@ -13,16 +13,40 @@
 
 ActiveRecord::Schema.define(version: 20150327023948) do
 
-  create_table "rooms", force: :cascade do |t|
-    t.string   "short_desc"
-    t.string   "neighborhood"
-    t.decimal  "price",        precision: 10, scale: 2
-    t.text     "description"
-    t.integer  "user_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+  create_table "amenities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  create_table "neighborhoods", force: :cascade do |t|
+    t.string   "city_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "room_amenities", id: false, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "room_id"
+    t.integer  "amenity_id"
+  end
+
+  add_index "room_amenities", ["room_id", "amenity_id"], name: "index_room_amenities_on_room_id_and_amenity_id"
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "short_desc"
+    t.decimal  "price",           precision: 10, scale: 2
+    t.text     "description"
+    t.integer  "size"
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "rooms", ["neighborhood_id"], name: "index_rooms_on_neighborhood_id"
   add_index "rooms", ["user_id"], name: "index_rooms_on_user_id"
 
   create_table "users", force: :cascade do |t|
