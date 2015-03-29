@@ -30,13 +30,23 @@ User.create!(name:  "Example User",
                activated_at: Time.zone.now)
 end
 
-areas = %w{Height Downtown Mission Sunset Richmond Marina}
-areas.each do |a|
-  Neighborhood.create(city_id: "SFO",
-                      name: a)
+#Read values from file into an array
+areas = Array.new
+file = 'db/neighborhoods.txt'
+File.readlines(file).each do |line|
+  areas << line.gsub(/\n/, "")
 end
 
-amtys = ['Close to muni', 'Private entrance', 'Wash/dryer in unit', 'Wash/dryer in building']
+#Populate table with array values
+areas.each do |nbrd|
+  Neighborhood.create(city_id: "SFO",
+                      name: nbrd)
+end
+
+amtys = ['Close to muni', 'Private entrance', 'Dishwasher',
+         'Washer/dryer in unit', 'Washer/dryer in building',
+         'Balcony', 'Patio', 'High Speed Internet Access',
+         'Fitness Center', 'On Site Management', 'Garage', 'Carport']
 amtys.each do |a|
   Amenity.create(name: a)
 end
