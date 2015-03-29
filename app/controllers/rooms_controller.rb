@@ -26,7 +26,13 @@ class RoomsController < ApplicationController
   end
 
   def index
-  	@rooms = Room.paginate(page: params[:page])
+    @rooms = Room.paginate(page: params[:page]).where(nil)
+  	@rooms = @rooms.paginate(page: params[:page]) \
+                   .neighborhood(params[:neighborhood]) \
+                   if params[:neighborhood].present?
+    @rooms = @rooms.paginate(page: params[:page]) \
+                   .max_price(params[:max_price]) \
+                   if params[:max_price].present?
   end
 
   private

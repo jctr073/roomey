@@ -1,8 +1,23 @@
 <% provide(:title, 'All Rooms') %>
-<h1>All Rooms</h1>
+<h1>Rooms Rentals</h1>
+
+<nav class="navbar navbar-default" role="navigation">
+	<%= form_tag(rooms_path, method: "get", class: "form-inline navbar-form navbar-left") do %>
+		<%= select_tag(:neighborhood, 
+					options_for_select(Neighborhood.all.collect {|n| [n.name, n.id]}, params[:neighborhood]), 
+					include_blank: true, class: 'form-control') %>
+		<%= number_field_tag(:max_price, \
+													(params[:max_price].present?)? params[:max_price]: nil,\
+													class: "form-control", \
+													placeholder: "Max Price")%>
+		<%= submit_tag("Search", class: "btn btn-primary") %> 
+		<%= button_tag("Clear", class: "btn btn-warning") %>
+	<% end %>
+</nav>
+
 <%=	will_paginate %>
 
-<% @rooms.each() do |rm| %>
+	<% @rooms.each() do |room| %>
 		<div class="media">
 		  <div class="media-left">
 		    <a href="#">
@@ -10,11 +25,20 @@
 		    </a>
 		  </div>
 		  <div class="media-body">
-		    <h4 class="media-heading"><%= link_to rm.short_desc + ' (' + number_to_currency(rm.price).to_s + ')', rm %></h4>
-		    <span class="text-info"><%= time_ago_in_words(rm.created_at) %></span>
+		    <h4 class="media-heading"><%= link_to room.short_desc, room %></h4>
+		    <div class="col-md-4 text-warning">
+		    	<%= room.neighborhood.name %>
+		    </div>
+		    <div class="col-md-4 text-warning">
+		    	<%= number_to_currency(room.price) %>
+		    </div>
+		    <div class="col-md-4 text-warning">
+		    	<%= time_ago_in_words(room.created_at) %>
+		    </div>
 		    <br>
-		    <%= rm.description %>
+		    <%= room.description %>
 		  </div>
 		</div>
+		<hr>
 	<% end %>
 <%=	will_paginate %>
