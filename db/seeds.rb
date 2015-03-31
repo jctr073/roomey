@@ -51,6 +51,7 @@ amtys.each do |a|
   Amenity.create(name: a)
 end
 
+#Create dummy room rentals
 66.times do |n|
   words = %w{Spacious Luxury Renovated Bright Large}
   desc = Faker::Lorem.paragraph(rand(5..9))
