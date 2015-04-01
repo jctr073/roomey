@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_blank: true
   validates :age, presence: true
   validates :gender, presence: true
+  validates :price, presence: true
   
 
   # Returns the hash digest of the given string.
