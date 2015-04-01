@@ -2,9 +2,14 @@
 <h1>Rooms Rentals</h1>
 
 <nav class="navbar navbar-default" role="navigation">
+
 	<%= form_tag(rooms_path, method: "get", class: "form-inline navbar-form navbar-left") do %>
-		<%= select_tag(:neighborhood, 
-					options_for_select(Neighborhood.all.collect {|n| [n.name, n.id]}, params[:neighborhood]), 
+        <%=	 label_tag(:search_label, "Search:  ") %>
+        <%=	 text_field_tag(:search_string, (params[:search_string].present?)? params[:search_string]: nil, \
+                            class: "form-control", placeholder: "Search") %>
+		<%= select_tag(:neighborhood,
+					"<option value='' disabled selected style='display:none;'>Neighborhoods</option>" +
+                       options_for_select(Neighborhood.all.collect {|n| [n.name, n.id]}, params[:neighborhood]),
 					include_blank: true, class: 'form-control') %>
 		<%= number_field_tag(:max_price, \
 													(params[:max_price].present?)? params[:max_price]: nil,\
@@ -42,3 +47,9 @@
 		<hr>
 	<% end %>
 <%=	will_paginate %>
+
+<script>
+  $(document).ready(function () {
+      //alert('hi');
+  });
+</script>
