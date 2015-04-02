@@ -18,11 +18,22 @@
         <%= f.label :gender %>
         <%= f.text_field :gender, class: 'form-control' %>
 
+        <%= f.label :phone %>
+        <%= f.text_field :phone, class: 'form-control' %>
+   
         <%= f.label :seeker %>
-        <%= f.check_box :seeker, class: 'form-control' %>
+        <%= f.check_box :seeker, class: 'form-control'   %>
+
 
         <%= f.label :price %>
         <%= f.text_field :price, class: 'form-control' %>
+
+         <%= f.label :neighbor_id %>
+                 
+        <%= f.select(:neighbor_id, Neighborhood.all.collect {|n| [ n.name, n.id ]}, 
+                                            { include_blank: true }, 
+                                            { class: 'form-control' }) %>
+        
 
         <%= f.label :password %>
         <%= f.password_field :password, class: 'form-control' %>
