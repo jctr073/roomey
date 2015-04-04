@@ -1,4 +1,4 @@
-class AddDreamPlaceIdToUsers < ActiveRecord::Migration
+class AddNeighborhoodIdToUsers < ActiveRecord::Migration
   def change
     add_column :users, :neighborhood_id, :interger
   end

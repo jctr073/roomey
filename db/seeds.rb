@@ -6,35 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(name:  "Example User",
-             age: rand(18..50),
-             gender: "Male",
-             email: "example@railstutorial.org",
-             price: 1800,
-             password:              "foobar",
-             password_confirmation: "foobar",
-             admin: true,
-             activated: true,
-             activated_at: Time.zone.now)
-
-99.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  User.create!(name:  name,
-               age: rand(18..50),
-               gender: "Female",
-               dreamPlaceID: rand(1..3),
-               phone: "415-xxx-xxx",
-
-               email: email,
-               price: rand(800..3000),
-               password:              password,
-               password_confirmation: password,
-               activated: true,
-               activated_at: Time.zone.now)
-end
-
 #Read values from file into an array
 areas = Array.new
 file = 'db/neighborhoods.txt'
@@ -48,6 +19,39 @@ areas.each do |nbrd|
                       name: nbrd)
 end
 
+hood_count = Neighborhood.count
+
+User.create!(name:  "Example User",
+             age: rand(18..50),
+             gender: "Male",
+             email: "example@railstutorial.org",
+             price: 1800,
+             phone: "(415) #{rand(100..999)}-#{rand(1000..9999)}",
+             neighborhood_id: rand(1..hood_count),
+             password: "foobar",
+             password_confirmation: "foobar",
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
+
+200.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name:  name,
+               age: rand(18..50),
+               gender: "Female",
+               neighborhood_id: rand(1..20),
+               email: email,
+               price: rand(800..3000),
+               phone: "(415) #{rand(100..999)}-#{rand(1000..9999)}",
+               neighborhood_id: rand(1..hood_count),
+               password:              password,
+               password_confirmation: password,
+               activated: true,
+               activated_at: Time.zone.now)
+end
+
 amtys = ['Close to muni', 'Private entrance', 'Dishwasher',
          'Washer/dryer in unit', 'Washer/dryer in building',
          'Balcony', 'Patio', 'High Speed Internet Access',
@@ -57,10 +61,10 @@ amtys.each do |a|
 end
 
 #Create dummy room rentals
-66.times do |n|
+200.times do |n|
   words = %w{Spacious Luxury Renovated Bright Large}
   desc = Faker::Lorem.paragraph(rand(5..9))
-  rm = Room.create(neighborhood_id: rand(1..6),
+  rm = Room.create(neighborhood_id: rand(1..hood_count),
               short_desc: "#{words[rand(0..4)]} room for rent.",
               price: rand(800..2750), 
               description: desc,
@@ -71,3 +75,7 @@ end
   end
 end 
 
+
+# def create_dummy_phone
+#   "(415) #{rand(100..999)}-#{rand(1000..9999)}"
+# end

@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150402041646) do
     t.string   "gender"
     t.decimal  "price",             precision: 10, scale: 2
     t.string   "phone"
-    t.integer  "neighbor_id"
+    t.integer  "neighborhood_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
