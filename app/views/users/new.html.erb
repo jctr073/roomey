@@ -28,9 +28,9 @@
         <%= f.label :price %>
         <%= f.text_field :price, class: 'form-control' %>
 
-         <%= f.label :neighbor_id %>
+         <%= f.label :neighborhood_id %>
                  
-        <%= f.select(:neighbor_id, Neighborhood.all.collect {|n| [ n.name, n.id ]}, 
+        <%= f.select(:neighborhood_id, Neighborhood.all.collect {|n| [ n.name, n.id ]}, 
                                             { include_blank: true }, 
                                             { class: 'form-control' }) %>
         
