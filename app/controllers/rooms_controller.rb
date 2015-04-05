@@ -27,15 +27,9 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.paginate(page: params[:page]).where(nil)
-    @rooms = @rooms.paginate(page: params[:page]) \
-                   .contains(params[:search_string]) \
-                   if params[:search_string].present?
-  	@rooms = @rooms.paginate(page: params[:page]) \
-                   .neighborhood(params[:neighborhood]) \
-                   if params[:neighborhood].present?
-    @rooms = @rooms.paginate(page: params[:page]) \
-                   .max_price(params[:max_price]) \
-                   if params[:max_price].present?
+    @rooms = @rooms.contains(params[:search_string]) if params[:search_string].present?
+  	@rooms = @rooms.neighborhood(params[:neighborhood]) if params[:neighborhood].present?
+    @rooms = @rooms.max_price(params[:max_price]) if params[:max_price].present?
   end
 
   private
