@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402041646) do
+ActiveRecord::Schema.define(version: 20150404224215) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lifestyle_tags", force: :cascade do |t|
+    t.string   "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +40,16 @@ ActiveRecord::Schema.define(version: 20150402041646) do
   end
 
   add_index "room_amenities", ["room_id", "amenity_id"], name: "index_room_amenities_on_room_id_and_amenity_id"
+
+  create_table "room_lifestyle_tags", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "lifestyle_tag_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "room_lifestyle_tags", ["lifestyle_tag_id"], name: "index_room_lifestyle_tags_on_lifestyle_tag_id"
+  add_index "room_lifestyle_tags", ["room_id"], name: "index_room_lifestyle_tags_on_room_id"
 
   create_table "rooms", force: :cascade do |t|
     t.string   "short_desc"

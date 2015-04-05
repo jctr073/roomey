@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+#Populate Neighborhoods
+#---------------------------------------------------------
 #Read values from file into an array
 areas = Array.new
 file = 'db/neighborhoods.txt'
@@ -18,6 +21,14 @@ areas.each do |nbrd|
   Neighborhood.create(city_id: "SFO",
                       name: nbrd)
 end
+
+#Populate Tags
+#---------------------------------------------------------
+tags = Array.new
+file = 'db/lifestyle_tags.txt'
+File.readlines(file).each { |line| tags << line.gsub(/\n/, "") }
+tags.each { |tg| LifestyleTag.create(tag: tg) }
+
 
 hood_count = Neighborhood.count
 
@@ -74,8 +85,3 @@ end
     RoomAmenity.create(room_id: rm.id, amenity_id: am.id)
   end
 end 
-
-
-# def create_dummy_phone
-#   "(415) #{rand(100..999)}-#{rand(1000..9999)}"
-# end

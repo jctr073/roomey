@@ -1,9 +1,10 @@
 <% provide(:title, 'Room') %>
 <h1>Rooms#new</h1>
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
+	<%= form_for @room, :html => {class: 'form-horizontal'} do |f| %>
+	<div class="row">
+		<div class="col-md-8">
 
-		<%= form_for @room, :html => {class: 'form-horizontal'} do |f| %>
+		
 
 			<div class="form-group">
 				<%= f.label :short_desc, class: "col-sm-3 control-label" %>
@@ -41,18 +42,42 @@
 					<%= f.text_area :description, class: 'form-control', rows: 5 %>
 				</div>
 			</div>
+	</div> <!-- first col -->
 
-			<div class="form-group">
-				<%= f.label :amenities, class: "col-sm-3 control-label" %>
-				<div class="col-sm-9">
-					<%= f.select(:amenities, 
-											Amenity.all.collect {|n| [ n.name, n.id ]}, 
-											{ include_blank: false }, 
-											{ class: 'form-control', multiple: true, size: 10 }) %>
+	<div class="col-md-4">
+		<ul class="nav nav-tabs" id="myTab">
+			<li><a href="#amenities" data-toggle="tab">Amenities</a></li>
+			<li><a href="#lifestyles" data-toggle="tab">Lifestyles</a></li>
+		</ul>
+			
+			<div class="tab-content">
+				<div class="tab-pane" id="amenities">
+					<p> 					
+						<div class="col-sm-12 form-group">
+						<%= f.select(:amenities, 
+												Amenity.all.collect {|n| [ n.name, n.id ]}, 
+												{ include_blank: false }, 
+												{ class: 'form-control', multiple: true, size: 11 }) %>
+						</div>
+					</p>
+
+				</div>
+				<div class="tab-pane" id="lifestyles">
+					<p>lifestyles</p>
 				</div>
 			</div>
-
-			<%= f.submit "Post Rental", class: "btn btn-primary" %>
-		<% end %>
 	</div>
-</div>
+
+	</div> <!-- row -->
+	<%= f.submit "Post Rental", class: "btn btn-primary" %>
+	<% end %>
+<script>
+	$(document).ready(function(){
+		$('#myTab a:first').tab('show');
+
+		$('#myTab a').click(function (e) {
+  		e.preventDefault();
+  		$(this).tab('show');
+		});
+	});
+</script>

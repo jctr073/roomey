@@ -1,0 +1,9 @@
+Social
+Private
+Professional
+Smoker
+Non-Smoker
+Drinker
+Non-drinker
+Straight
+LGBT
