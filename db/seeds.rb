@@ -31,7 +31,6 @@ tags.each { |tg| LifestyleTag.create(tag: tg) }
 
 
 hood_count = Neighborhood.count
-
 User.create!(name:  "Example User",
              age: rand(18..50),
              gender: "Male",

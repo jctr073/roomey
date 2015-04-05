@@ -5,11 +5,15 @@ class RoomsController < ApplicationController
 
   def create
     
-    sel_amenities = params[:room][:amenities]
+    selected_amenities      = params[:room][:amenities]
+    selected_lifestyle_tags = params[:room][:lifestyle_tags]    
     @room = current_user.rooms.build(room_params)
     if @room.save
-      sel_amenities.each do |id|
+      selected_amenities.each do |id|
         @room.amenities << Amenity.find(id.to_i) unless id.empty?
+      end
+        selected_lifestyle_tags.each do |id|
+        @room.lifestyle_tags << LifestyleTag.find(id.to_i) unless id.empty?
       end
       flash[:success] = "Room Posted"
       redirect_to room_path(@room.id)

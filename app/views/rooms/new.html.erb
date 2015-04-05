@@ -63,7 +63,14 @@
 
 				</div>
 				<div class="tab-pane" id="lifestyles">
-					<p>lifestyles</p>
+					<p>
+						<div class="col-sm-12 form-group">
+						<%= f.select(:lifestyle_tags, 
+												LifestyleTag.all.collect {|n| [ n.tag, n.id ]}, 
+												{ include_blank: false }, 
+												{ class: 'form-control', multiple: true, size: 11 }) %>
+						</div>
+					</p>
 				</div>
 			</div>
 	</div>
